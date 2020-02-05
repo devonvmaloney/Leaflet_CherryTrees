@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <title> Map of UNC Cherry Trees </title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+
+    <script
+        src="/Users/devonmaloney/Documents/UNC/Spring 2020/456 Geovisualizing Change/Leafletmap/leaflet_tutorial/data/flowering_cherries_4326.geojson"> </script>
+
+</head>
+
+<body>
+    <b>Cherry Trees: </b>
+    <br />
+    Markers repersent the location of indivdual trees from the UNC tree inventory. 
+
+    <div id="mapid"></div>
+
+    <style>
+        #mapid {
+            width: 900px;
+            height: 600px;
+        }
+    </style>
+    <script>
+
+        var map = L.map('mapid').setView([35.905, -79.05], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+
+    </script>
+
+    <script>
+
+        var redIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-1x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        L.geoJSON(unccherry).addTo(map);
+
+        var cherryIcon = L.icon({
+            iconUrl: 'file:///Users/devonmaloney/Downloads/_ionicons_svg_md-flower.svg',
+            iconSize: [50, 50],
+            popupAnchor: [0, 0]
+        })
+
+
+
+
+        L.geoJSON(unccherry,
+            {
+                pointToLayer:
+                    function (feature, latlng) {
+                        return L.marker(latlng,
+                            { icon: redIcon })
+                            ;
+                    }
+            })
+
+
+    </script>
+
+</body>
+
+</html>
