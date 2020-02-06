@@ -12,7 +12,7 @@
         crossorigin=""></script>
 
     <script
-        src="/Users/devonmaloney/Documents/UNC/Spring 2020/456 Geovisualizing Change/Leafletmap/leaflet_tutorial/data/flowering_cherries_4326.geojson"> </script>
+        src="/Users/devonmaloney/Documents/GitHub/Leaflet_CherryTrees/flowering_cherries_4326.geojson"> </script>
 
 </head>
 
@@ -41,7 +41,7 @@
     </script>
 
     <script>
-//attempted to change the marker to either a red marker or symbol of flower, without success
+
         var redIcon = new L.Icon({
             iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-1x-red.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -49,28 +49,23 @@
             iconAnchor: [12, 41],
             popupAnchor: [1, -34],
             shadowSize: [41, 41]
-        });
-
-        L.geoJSON(unccherry).addTo(map);
+        })
 
         var cherryIcon = L.icon({
-            iconUrl: 'file:///Users/devonmaloney/Downloads/_ionicons_svg_md-flower.svg',
+            iconUrl: 'file:///Users/devonmaloney/Documents/GitHub/Leaflet_CherryTrees/hiclipart.com.png',
             iconSize: [50, 50],
             popupAnchor: [0, 0]
         })
-
-
-
 
         L.geoJSON(unccherry,
             {
                 pointToLayer:
                     function (feature, latlng) {
                         return L.marker(latlng,
-                            { icon: redIcon })
+                            { icon: cherryIcon })
                             ;
                     }
-            })
+            }).addTo(map)
 
 
     </script>
